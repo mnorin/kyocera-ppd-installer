@@ -45,6 +45,13 @@ P.S.
 Unfortunatelly, I don't have any Kyocera devices anymore, and I will not be able to test any fixes.
 It would be nice to hear from you how it works.
 
+Contacts
+========
+Website: https://mnorin.com<br>
+E-mail: maxim.norin@gmail.com, mnorin@mnorin.com<br>
+Skype: m.norin<br>
+Linkedin: https://www.linkedin.com/in/mnorin
+
 Changes
 =======
 
