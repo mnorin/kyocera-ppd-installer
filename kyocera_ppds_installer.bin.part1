@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+cat << EOF
+Kyosera PPD installer v.1.0.2
+
+This installer contains i386 and x86_64 linux drivers
+for Kyosera FS printers and multi-functional devices (English only).
+Included models:
+- Kyocera FS-1020MFP
+- Kyocera FS-1025MFP
+- Kyocera FS-1040
+- Kyocera FS-1060DN
+- Kyocera FS-1120MFP
+- Kyocera FS-1125MFP
+Installer by Maxim Norin (https://mnorin.com, Mail: mnorin@mnorin.com).
+Wrapper by tr0n (sorry, don't have contact)
+
+EOF
+
+install_drivers(){
+# check if started as root
+if [ $UID != 0 ]
+then
+    echo Not sufficient rights for installation.
+    echo Use "sudo" or start as root.
+    exit
+fi
+echo Installing...
+
+PPD_SRC_PATH=/tmp/kyosera_ppds
+mkdir ${PPD_SRC_PATH} 2>/dev/null
+(cat << EOF

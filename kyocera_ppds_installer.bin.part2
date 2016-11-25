@@ -1,0 +1,21 @@
+EOF
+) | base64 -d -i | tar -xj -C ${PPD_SRC_PATH}
+
+mkdir -p /usr/share/cups/model/Kyocera
+cp ${PPD_SRC_PATH}/*.ppd /usr/share/cups/model/Kyocera
+# Fix for ROSA
+cp ${PPD_SRC_PATH}/rastertokpsl_$(uname -p) /usr/lib/cups/filter/rastertokpsl-bin
+cp ${PPD_SRC_PATH}/rastertokpsl_wrapper /usr/lib/cups/filter/rastertokpsl
+echo Kyosera devices drivers are installed. You may use CUPS now.
+}
+
+echo -n "Do you want to install [y/n]?: "
+read -n 1
+echo
+case $REPLY in
+    y)	install_drivers
+    ;;
+    *)	echo "Exited";
+	exit
+    ;;
+esac
