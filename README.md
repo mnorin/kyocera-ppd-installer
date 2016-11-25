@@ -1,9 +1,9 @@
 Kyocera PPD files installer
 ==================
 
-Bash script that installs PPD files for Kyocera devices for i386/i686/x86_64 Linux distributions.
-
 Current version: v.1.0.2
+
+Language: bash
 
 This installer contains i386 and x86_64 linux drivers for Kyosera FS printers and multi-functional units (English only).
 Included models:
@@ -27,6 +27,17 @@ Binary files
 
 These files you can also download from Kyocera website.
 
+F.A.Q.
+======
+
+Q: How to install drivers?
+A: Download file that ends with .bin, grant execution rights and start with root privileges.
+
+Q: Why do you need rott privileges?
+A: These privileges are needed so the script could copy PPD files and necessary binaries to system directories
+
+Q: Why don't you just create deb/rpm package?
+A: There are too many package managers, I just want it to work on any Linux distribution (well, as many as possible).
 
 P.S.
 ====
