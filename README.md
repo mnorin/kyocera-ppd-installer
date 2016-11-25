@@ -42,7 +42,7 @@ F.A.Q.
 P.S.
 ====
 
-Unfortunatelly, I don't have any Kycera devices anymore, so I will not be able to test any fixes.
+Unfortunatelly, I don't have any Kyocera devices anymore, so I will not be able to test any fixes.
 So, it would be nice to hear from you
 
 Changes
