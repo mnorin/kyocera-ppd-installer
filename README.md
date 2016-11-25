@@ -42,8 +42,8 @@ F.A.Q.
 P.S.
 ====
 
-Unfortunatelly, I don't have any Kyocera devices anymore, so I will not be able to test any fixes.
-So, it would be nice to hear from you
+Unfortunatelly, I don't have any Kyocera devices anymore, and I will not be able to test any fixes.
+It would be nice to hear from you how it works.
 
 Changes
 =======
