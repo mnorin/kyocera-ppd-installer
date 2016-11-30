@@ -31,7 +31,7 @@ F.A.Q.
 ======
 
 **Q:** How to install drivers?<br>
-**A:** Download file that ends with .bin, grant execution rights and start with root privileges.
+**A:** Download file kyocera_ppds_installer_{VERSION}.sh, grant execution rights and start with root privileges.
 
 **Q:** Why do you need root privileges?<br>
 **A:** These privileges are needed so the script could copy PPD files and necessary binaries to system directories
