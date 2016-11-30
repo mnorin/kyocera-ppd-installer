@@ -6,8 +6,8 @@ tar -cjf kyocera_files.tar.bz2 *.ppd rastertokpsl_i386 rastertokpsl_i686 rastert
 
 base64 kyocera_files.tar.bz2 > kyocera_files.tar.bz2.encoded
 
-cat kyocera_ppds_installer.bin.part1 kyocera_files.tar.bz2.encoded kyocera_ppds_installer.bin.part2 > kyocera_ppds_installer_${VERSION}.bin
+cat kyocera_ppds_installer.bin.part1 kyocera_files.tar.bz2.encoded kyocera_ppds_installer.bin.part2 > kyocera_ppds_installer_${VERSION}.sh
 
 rm kyocera_files.tar.bz2 kyocera_files.tar.bz2.encoded
 
-chmod +x kyocera_ppds_installer_${VERSION}.bin
+chmod +x kyocera_ppds_installer_${VERSION}.sh
