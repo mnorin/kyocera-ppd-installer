@@ -39,7 +39,7 @@ F.A.Q.
 **Q:** Why don't you just create deb/rpm package?<br>
 **A:** There are too many package managers, I just want it to work on any Linux distribution (well, as many as possible).
 
-**Q:** How to uninstall these thing?<br>
+**Q:** How to uninstall these things?<br>
 **A:** Use this: ./kyocera_ppds_installer_{VERSION}.sh --uninstall
 
 P.S.
