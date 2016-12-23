@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.0.3"
+VERSION="1.0.4"
 
 tar -cjf kyocera_files.tar.bz2 *.ppd rastertokpsl_32 rastertokpsl_64 rastertokpsl_wrapper
 

@@ -39,6 +39,9 @@ F.A.Q.
 **Q:** Why don't you just create deb/rpm package?<br>
 **A:** There are too many package managers, I just want it to work on any Linux distribution (well, as many as possible).
 
+**Q:** How to uninstall these thing?<br>
+**A:** Use this: ./kyocera_ppds_installer_{VERSION}.sh --uninstall
+
 P.S.
 ====
 
@@ -54,6 +57,9 @@ Linkedin: https://www.linkedin.com/in/mnorin
 
 Changes
 =======
+
+v.1.0.4
+- Uninstallation added
 
 v.1.0.3.
 - Changed architecture detection method

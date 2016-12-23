@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cat << EOF
-Kyosera PPD installer v.1.0.2
+Kyosera PPD installer v.1.0.4
 
 This installer contains i386 and x86_64 linux drivers
 for Kyosera FS printers and multi-functional devices (English only).

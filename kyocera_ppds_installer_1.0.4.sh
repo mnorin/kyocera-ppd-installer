@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cat << EOF
-Kyosera PPD installer v.1.0.2
+Kyosera PPD installer v.1.0.4
 
 This installer contains i386 and x86_64 linux drivers
 for Kyosera FS printers and multi-functional devices (English only).
@@ -2257,6 +2257,13 @@ cp ${PPD_SRC_PATH}/rastertokpsl_$BITS /usr/lib/cups/filter/rastertokpsl-bin
 cp ${PPD_SRC_PATH}/rastertokpsl_wrapper /usr/lib/cups/filter/rastertokpsl
 echo Kyosera devices drivers are installed. You may use CUPS now.
 }
+
+if [ "$1" == "--uninstall" ]
+then
+    rm -f /usr/lib/cups/filter/rastertopksl-bin /usr/lib/cups/filter/rastertopksl /usr/share/cups/model/Kyocera/Kyocera_FS-1{020MFP,025MFP,040,060DN,120MFP,125MFP}GDI.ppd
+    rmdir /usr/share/cups/model/Kyocera 2>/dev/null
+    echo "Uninstalled."
+fi
 
 echo -n "Do you want to install [y/n]?: "
 read -n 1
