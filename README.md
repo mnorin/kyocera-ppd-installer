@@ -1,7 +1,7 @@
 Kyocera PPD files installer
 ==================
 
-Current version: v.1.0.3
+Current version: v.1.0.4
 
 Language: bash
 
