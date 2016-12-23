@@ -1,7 +1,7 @@
 Kyocera PPD files installer
 ==================
 
-Current version: v.1.0.2
+Current version: v.1.0.3
 
 Language: bash
 
@@ -54,6 +54,9 @@ Linkedin: https://www.linkedin.com/in/mnorin
 
 Changes
 =======
+
+v.1.0.3.
+- Changed architecture detection method
 
 v.1.0.2.
 - Minor fix for ROSA linux. Don't now if it will work, but it probably should
