@@ -11,3 +11,7 @@ cat kyocera_ppds_installer.bin.part1 kyocera_files.tar.bz2.encoded kyocera_ppds_
 rm kyocera_files.tar.bz2 kyocera_files.tar.bz2.encoded
 
 chmod +x kyocera_ppds_installer_${VERSION}.sh
+
+rm -f kyocera_ppds_installer.sh
+
+ln -s kyocera_ppds_installer_${VERSION}.sh kyocera_ppds_installer.sh

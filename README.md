@@ -66,3 +66,7 @@ v.1.0.3.
 
 v.1.0.2.
 - Minor fix for ROSA linux. Don't now if it will work, but it probably should
+
+TODO:
+=====
+- Make self-test with checksum
