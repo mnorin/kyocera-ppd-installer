@@ -31,7 +31,7 @@ F.A.Q.
 ======
 
 **Q:** How to install drivers?<br>
-**A:** Download file kyocera_ppds_installer_{VERSION}.sh, grant execution rights and start with root privileges.
+**A:** Download file kyocera_ppds_installer.sh, grant execution rights and start with root privileges.
 
 **Q:** Why do you need root privileges?<br>
 **A:** These privileges are needed so the script could copy PPD files and necessary binaries to system directories
@@ -40,7 +40,7 @@ F.A.Q.
 **A:** There are too many package managers, I just want it to work on any Linux distribution (well, as many as possible).
 
 **Q:** How to uninstall these things?<br>
-**A:** Use this: ./kyocera_ppds_installer_{VERSION}.sh --uninstall
+**A:** Use this: ./kyocera_ppds_installer.sh --uninstall
 
 P.S.
 ====
