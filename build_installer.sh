@@ -14,4 +14,4 @@ chmod +x kyocera_ppds_installer_${VERSION}.sh
 
 rm -f kyocera_ppds_installer.sh
 
-ln -s kyocera_ppds_installer_${VERSION}.sh kyocera_ppds_installer.sh
+cp kyocera_ppds_installer_${VERSION}.sh kyocera_ppds_installer.sh
