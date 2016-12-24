@@ -2263,6 +2263,7 @@ then
     rm -f /usr/lib/cups/filter/rastertopksl-bin /usr/lib/cups/filter/rastertopksl /usr/share/cups/model/Kyocera/Kyocera_FS-1{020MFP,025MFP,040,060DN,120MFP,125MFP}GDI.ppd
     rmdir /usr/share/cups/model/Kyocera 2>/dev/null
     echo "Uninstalled."
+    exit 0
 fi
 
 echo -n "Do you want to install [y/n]?: "
