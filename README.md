@@ -19,13 +19,18 @@ Included models:
 PPD Files
 =========
 
-These files can be downloaded from Kyocera website.
+These files can be downloaded from Kyocera website. These files are to distribute under license defined by Kyocera.
 If you want to update these files in installation package, please let me know.
 
 Binary files
 ============
 
 These files you can also download from Kyocera website.
+
+License
+=======
+
+The installer script itself is distributed under GPLv2 license (see license text in LICENSE.txt)
 
 F.A.Q.
 ======
