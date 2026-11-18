@@ -1,4 +1,62 @@
-#!/usr/bin/env bash
+#!/bin/sh
+# kyocera-ppd-installer wrapper (the installer looks for this line)
+#
+# Wrapper around Kyocera's rastertokpsl filter binary.
+#
+# The binary copies the user name and the job title into fixed-size buffers.
+# It aborts ("buffer overflow detected") when the user name is 32 bytes or
+# longer or the title is 64 bytes or longer, and it garbles non-ASCII bytes.
+# The printer's job header holds 15 characters of user name and 31 of title,
+# so cut both to that and keep printable ASCII only, transliterating what can be.
 
-jobname=$(echo $3 | egrep -o '[[:alnum:]]' | tr -d "\n" | tail -c 20)
-/usr/lib/cups/filter/rastertokpsl-bin "$1" "$2" "$jobname" "$4" "$5"
+# Cyrillic to Latin, so that a Russian, Ukrainian or Belarusian file name
+# stays readable on the printer. Works on bytes, so the locale does not matter.
+CYRILLIC='
+    s/щ/shch/g; s/Щ/Shch/g; s/ж/zh/g; s/Ж/Zh/g; s/х/kh/g; s/Х/Kh/g;
+    s/ц/ts/g; s/Ц/Ts/g; s/ч/ch/g; s/Ч/Ch/g; s/ш/sh/g; s/Ш/Sh/g; s/ю/yu/g;
+    s/Ю/Yu/g; s/я/ya/g; s/Я/Ya/g; s/ї/yi/g; s/Ї/Yi/g; s/є/ye/g; s/Є/Ye/g;
+    s/ё/e/g; s/Ё/E/g; s/а/a/g; s/б/b/g; s/в/v/g; s/г/g/g; s/д/d/g;
+    s/е/e/g; s/з/z/g; s/и/i/g; s/й/y/g; s/к/k/g; s/л/l/g; s/м/m/g;
+    s/н/n/g; s/о/o/g; s/п/p/g; s/р/r/g; s/с/s/g; s/т/t/g; s/у/u/g;
+    s/ф/f/g; s/ы/y/g; s/э/e/g; s/і/i/g; s/ґ/g/g; s/ў/u/g; s/ъ//g; s/ь//g;
+    s/А/A/g; s/Б/B/g; s/В/V/g; s/Г/G/g; s/Д/D/g; s/Е/E/g; s/З/Z/g;
+    s/И/I/g; s/Й/Y/g; s/К/K/g; s/Л/L/g; s/М/M/g; s/Н/N/g; s/О/O/g;
+    s/П/P/g; s/Р/R/g; s/С/S/g; s/Т/T/g; s/У/U/g; s/Ф/F/g; s/Ы/Y/g;
+    s/Э/E/g; s/І/I/g; s/Ґ/G/g; s/Ў/U/g; s/Ъ//g; s/Ь//g; s/№/No/g
+'
+
+clean() { # value, maximum length
+    # Real question marks are kept aside as \001, so that the ones iconv puts
+    # in place of characters it cannot transliterate can be dropped.
+    v=$(printf '%s' "$1" | LC_ALL=C sed "$CYRILLIC" | LC_ALL=C tr '?' '\001')
+    # Accented letters and typographic dashes and quotes, where iconv can.
+    # iconv exits with an error even when it only had to replace a character,
+    # so its output is used whenever there is any; -c skips invalid UTF-8.
+    a=$(printf '%s' "$v" | LC_ALL=C.UTF-8 iconv -c -f UTF-8 -t ASCII//TRANSLIT 2> /dev/null | LC_ALL=C tr -d '?')
+    [ -n "$a" ] && v=$a
+    printf '%s' "$v" | LC_ALL=C tr '\001' '?' | LC_ALL=C tr -cd ' -~' | LC_ALL=C tr -s ' ' |
+        LC_ALL=C cut -c "1-$2" | LC_ALL=C sed 's/^ *//; s/ *$//'
+}
+
+user=$(clean "$2" 15)
+case $user in
+    *[A-Za-z0-9]*) ;;
+    *) user=user ;;
+esac
+
+title=$(clean "$3" 31)
+case $title in
+    *[A-Za-z0-9]*) ;;
+    *) title="job-$1" ;;
+esac
+
+[ "$title" = "$3" ] || echo "DEBUG: rastertokpsl wrapper: job title \"$3\" sent to the printer as \"$title\"" >&2
+[ "$user" = "$2" ] || echo "DEBUG: rastertokpsl wrapper: user name \"$2\" sent to the printer as \"$user\"" >&2
+
+bin=$(dirname "$0")/rastertokpsl-bin
+
+# CUPS passes the input file as a sixth argument when this is the first filter.
+if [ $# -ge 6 ]; then
+    exec "$bin" "$1" "$user" "$title" "$4" "$5" "$6"
+fi
+exec "$bin" "$1" "$user" "$title" "$4" "$5"
