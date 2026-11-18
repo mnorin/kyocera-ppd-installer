@@ -52,7 +52,7 @@
 *cupsModelNumber: 0
 *cupsSNMPSupplies: False
 
-*cupsFilter: "application/vnd.cups-raster 0 /usr/lib/cups/filter/rastertokpsl"
+*cupsFilter: "application/vnd.cups-raster 0 rastertokpsl"
 
 *% Basic Device Capabilities
 *LandscapeOrientation: Plus90
@@ -150,14 +150,6 @@
 *UIConstraints: *Duplex *MediaType Cardstock
 *UIConstraints: *MediaType Cardstock *Duplex DuplexTumble
 *UIConstraints: *MediaType Cardstock *Duplex DuplexNoTumble
-*UIConstraints: *MediaType Labels *InputSlot Internal
-*UIConstraints: *InputSlot Internal *MediaType Labels
-*UIConstraints: *MediaType Vellum *InputSlot Internal
-*UIConstraints: *InputSlot Internal *MediaType Vellum
-*UIConstraints: *MediaType Envelope *InputSlot Internal
-*UIConstraints: *InputSlot Internal *MediaType Envelope
-*UIConstraints: *MediaType Cardstock *InputSlot Internal
-*UIConstraints: *InputSlot Internal *MediaType Cardstock
 *NonUIConstraints: *Duplex *CustomPageSize True
 *NonUIConstraints: *CustomPageSize True *Duplex
 *UIConstraints: *Duplex *PageSize A6
