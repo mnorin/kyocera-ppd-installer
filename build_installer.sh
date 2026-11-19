@@ -1,17 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Builds kyocera_ppds_installer.sh: install.sh with the driver files appended,
+# so the installer is a single file that can be downloaded and run.
+#
+# Usage: build_installer.sh [output-file]
 
-VERSION="1.0.4"
+set -euo pipefail
+cd "$(dirname "$0")"
 
-tar -cjf kyocera_files.tar.bz2 *.ppd rastertokpsl_32 rastertokpsl_64 rastertokpsl_wrapper
+OUT=${1:-kyocera_ppds_installer.sh}
+FILES=(Kyocera_FS-*GDI.ppd rastertokpsl_32 rastertokpsl_64 rastertokpsl_wrapper)
 
-base64 kyocera_files.tar.bz2 > kyocera_files.tar.bz2.encoded
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
 
-cat kyocera_ppds_installer.bin.part1 kyocera_files.tar.bz2.encoded kyocera_ppds_installer.bin.part2 > kyocera_ppds_installer_${VERSION}.sh
+# Fixed owner, order and timestamps, so the output only changes when a file does.
+{
+    cat install.sh
+    echo "__PAYLOAD_BELOW__"
+    tar -c --owner=0 --group=0 --numeric-owner --sort=name --mtime='2020-01-01 00:00Z' "${FILES[@]}" |
+        gzip -9n | base64
+} > "$tmp"
 
-rm kyocera_files.tar.bz2 kyocera_files.tar.bz2.encoded
-
-chmod +x kyocera_ppds_installer_${VERSION}.sh
-
-rm -f kyocera_ppds_installer.sh
-
-cp kyocera_ppds_installer_${VERSION}.sh kyocera_ppds_installer.sh
+chmod 755 "$tmp"
+mv "$tmp" "$OUT"
+trap - EXIT
+echo "Built $OUT"
